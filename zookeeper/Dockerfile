@@ -6,7 +6,7 @@ ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk \
     ZOOKEEPER_HOME=/opt/zookeeper
 
 RUN cd /tmp && \
-    apk add --no-cache wget gnupg tar && \
+    apk add --no-cache wget gnupg tar bash && \
     wget -q ${ZOOKEEPER_MIRROR}/dist/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/zookeeper-${ZOOKEEPER_VERSION}.tar.gz && \
     wget -q ${ZOOKEEPER_MIRROR}/dist/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/zookeeper-${ZOOKEEPER_VERSION}.tar.gz.asc && \
     wget -q ${ZOOKEEPER_MIRROR}/dist/zookeeper/KEYS && \
@@ -19,6 +19,7 @@ RUN cd /tmp && \
     cd / && \
     rm -rf /tmp/*
 
+ADD zoo.cfg ${ZOOKEEPER_HOME}/conf/zoo.cfg
 EXPOSE 2181 2888 3888
 VOLUME ["${ZOOKEEPER_HOME}/conf", "${ZOOKEEPER_HOME}/data"]
 WORKDIR ${ZOOKEEPER_HOME}
