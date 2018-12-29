@@ -2,11 +2,11 @@
 
 echo "" >> $KAFKA_HOME/config/server.properties
 
-if [ ! -z "$ADVERTISED_HOST" ]; then
+if [ ! -z "$ADVERTISED_HOST_NAME" ]; then
     if grep -q "^advertised.host.name" $KAFKA_HOME/config/server.properties; then
-        sed -r -i "s/advertised.host.name=(.*)/advertised.host.name=$ADVERTISED_HOST/g" $KAFKA_HOME/config/server.properties
+        sed -r -i "s/advertised.host.name=(.*)/advertised.host.name=$ADVERTISED_HOST_NAME/g" $KAFKA_HOME/config/server.properties
     else
-        echo "advertised.host.name=$ADVERTISED_HOST" >> $KAFKA_HOME/config/server.properties
+        echo "advertised.host.name=$ADVERTISED_HOST_NAME" >> $KAFKA_HOME/config/server.properties
     fi
 fi
 

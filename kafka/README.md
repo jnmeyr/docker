@@ -11,7 +11,7 @@ docker push marlene:5000/jnmeyr/kafka
 
 ## Run ##
 docker run -d -p 9092:9092 \
-  --env ADVERTISED_HOST=kafka-0 \
+  --env ADVERTISED_HOST_NAME=192.168.0.110 \
   --env ADVERTISED_PORT=9092 \
   --env ZOOKEEPER_CONNECT=zookeeper:2181 \
   --name kafka-0 \
