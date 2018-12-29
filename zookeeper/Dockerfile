@@ -19,7 +19,7 @@ RUN cd /tmp && \
     cd / && \
     rm -rf /tmp/*
 
-ADD zoo.cfg ${ZOOKEEPER_HOME}/conf/zoo.cfg
+COPY zoo.cfg ${ZOOKEEPER_HOME}/conf/zoo.cfg
 EXPOSE 2181 2888 3888
 VOLUME ["${ZOOKEEPER_HOME}/conf", "${ZOOKEEPER_HOME}/data"]
 WORKDIR ${ZOOKEEPER_HOME}
