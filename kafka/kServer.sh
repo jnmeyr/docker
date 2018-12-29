@@ -18,6 +18,14 @@ if [ ! -z "$ADVERTISED_PORT" ]; then
     fi
 fi
 
+if [ ! -z "$BROKER_ID" ]; then
+    if grep -q "^broker.id" $KAFKA_HOME/config/server.properties; then
+        sed -r -i "s/broker.id=(.*)/broker.id=$BROKER_ID/g" $KAFKA_HOME/config/server.properties
+    else
+        echo "broker.id=$BROKER_ID" >> $KAFKA_HOME/config/server.properties
+    fi
+fi
+
 if [ ! -z "$ZOOKEEPER_CONNECT" ]; then
     if grep -q "^zookeeper.connect" $KAFKA_HOME/config/server.properties; then
         sed -r -i "s/zookeeper.connect=(.*)/zookeeper.connect=$ZOOKEEPER_CONNECT/g" $KAFKA_HOME/config/server.properties
