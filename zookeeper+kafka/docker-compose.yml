@@ -1,0 +1,16 @@
+version: '3'
+services:
+  zookeeper:
+    image: "jnmeyr/zookeeper:latest"
+    ports:
+     - "2181:2181"
+  kafka-0:
+    env_file: kafka-0.env
+    image: "jnmeyr/kafka:latest"
+    ports:
+     - "9092:9092"
+  kafka-1:
+    env_file: kafka-1.env
+    image: "jnmeyr/kafka:latest"
+    ports:
+     - "9093:9092"
